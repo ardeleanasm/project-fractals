@@ -22,13 +22,13 @@ mandelbrot z c iter
                 then iter
                 else mandelbrot zNext c (iter+1)
 
-createPalette::Int -> [Int]
-createPalette ind = [[r,g,b] | r<-[0..255],g<-[0..255],b<-[0..255]] !! ind
+colorPalette::[[Int]]
+colorPalette = [[r,g,b] | r<-[0,16..255],g<-[0,16..255],b<-[0,16..255]]
 
 getColor::Int -> Color
 getColor x
     | x > maxNumberOfIterations = rgb 255 255 255
-    | otherwise = let c = createPalette x
+    | otherwise = let c = colorPalette !! x
                    --   r = x `mod` 4 * 64
                    --   g = x `mod` 8 * 32
                    --   b = x `mod` 16 * 16
